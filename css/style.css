@@ -1,0 +1,71 @@
+body { 
+	padding-top: 50px; 
+}
+
+div#branding { 
+	height: 50px; 
+	width: 36px;
+	padding: 10px;
+	margin-right: 20px;
+	background-image:url(../img/logosw.png);
+	background-position: center center;
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+div#branding:hover {
+	background-image:url(../img/logo.png);
+}
+
+.hidden {
+	display:none;
+}
+
+/* http://stackoverflow.com/a/18164555/1781026 */
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    text-align: right;
+    font-size: 999px;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+.progress-bar a {
+	color: #fff;
+}
+
+.progress-bar a:hover {
+	color:#eee;
+}
+
+.progress-bar input {
+	background:none;
+	border:none;
+	padding:0;
+	margin:0;
+	width:250px;
+}
+
+#uploadform.dragover {
+	background-color:#666;
+}
+
+td.deletelink a {
+	cursor: pointer;
+}
+
+#upload-form .btn { 
+	white-space: normal;
+}
