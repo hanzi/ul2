@@ -118,7 +118,7 @@ $(document).ready(function() {
 			if(result.success != null) {
 				$('#f'+fileId).addClass('success');
 				$('#f'+fileId+' .filename a').removeAttr('href').addClass('text-muted');
-				$('#f'+fileId+' .deletelink').html('<span class="glyphicon glyphicon-ok"></span> Datei Gelöscht');	
+				$('#f'+fileId+' .deletelink').html('<span class="glyphicon glyphicon-ok"></span> Datei gelöscht');	
 			} else {
 				$('#f'+fileId).addClass('warning');
 				$('#f'+fileId+' .deletelink').html('Fehler beim Löschen, bitte Seite neu laden und erneut versuchen');	
