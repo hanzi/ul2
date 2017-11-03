@@ -8,6 +8,10 @@ if(count($_FILES) >= 1) {
 		$extension = $path["extension"];
 		$filename = basename($_FILES["file-upload"]["name"], ".".$extension);
 
+		// Zeichen filtern, Leerzeichen zu "_"
+		$extension = preg_replace(array('/\s/', '/[^a-zA-Z0-9_\-\.]/'), array('_', ''), $extension);
+		$filename = preg_replace(array('/\s/', '/[^a-zA-Z0-9_\-\.]/'), array('_', ''), $filename);
+
 		if(in_array($extension, $setting["disallow_extension"])) { echo json_encode(array('error' => 'Error uploading '.htmlspecialchars($_FILES["file-upload"]["name"]))); die(); }
 		if(in_array($filename, $setting["disallow_filename"])) { echo json_encode(array('error' => 'Error uploading '.htmlspecialchars($_FILES["file-upload"]["name"]))); die(); }
 
@@ -17,9 +21,6 @@ if(count($_FILES) >= 1) {
 			$rnd .= $characterset[rand(0, strlen($characterset)-1)];
 		}
 
-		// Zeichen filtern, Leerzeichen zu "_"
-		$filename = preg_replace(array('/\s/', '/[^a-zA-Z0-9_\-\.]/'), array('_', ''), $filename);
-		
 		// Dateinamen nach dem Schema ".htaccess"
 		if($filename == $extension || $extension == "") {
 			$new_filename = substr($filename, 0, 20)."-".$rnd;
