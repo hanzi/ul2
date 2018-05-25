@@ -3,6 +3,7 @@ $(document).ready(function() {
 
 	$('#file-upload').on('change', function(e) {
 		ul(e);
+		$(this).val('');
 	});
 
 	function ul(e) {
@@ -57,14 +58,28 @@ $(document).ready(function() {
 				progressbarElement.css('width', '100%');
 				if(result.success != null) {
 					// successfully uploaded
+					progressbarElement.html('')
 					progressbarElement.addClass('progress-bar-success');
-					progressbarElement.html('<a href="'+result.url+'"><span class="glyphicon glyphicon-new-window"></span></a> <input readonly="readonly" onfocus="this.focus();this.select();" type="text" value="'+result.url+'">');
+					var filelink = document.createElement("a");
+					filelink.href = result.url;
+					var filelinkIcon = document.createElement("span");
+					filelinkIcon.className = "glyphicon glyphicon-new-window"
+					filelinkIcon.style.marginRight = "5px"
+					var filelinkInput = document.createElement("input");
+					filelinkInput.type = "text"
+					filelinkInput.readonly = "readonly"
+					filelinkInput.onfocus = function(){ this.focus();this.select(); }
+					filelinkInput.value = result.url
 					
+					progressbarElement.append(filelink);
+					filelink.appendChild(filelinkIcon)
+					progressbarElement.append(filelinkInput)
+
 					if($('#myfiles tbody #emptyhistory').length != 0) {
 						$('#myfiles tbody').html('');
 					}
 					$('#myfiles tbody').prepend('<tr id="f'+result.success+'" class="active">'+
-						'<td class="filename"><a>'+result.filename+'</a></td>'+
+						'<td class="filename"><a href='+result.url+'>'+result.filename+'</a></td>'+
 						'<td class="text-right deletelink"><a data-id="'+result.success+'" class="text-danger"><span class="glyphicon glyphicon-remove"></span> Löschen</a></td>'+
 						'</tr>');
 					bindDelete();
@@ -132,7 +147,7 @@ $(document).ready(function() {
 			url: "admin.php",
 			data: { pw: $('input#pw').val() }
 		}).done(function(data) {
-			$('#admin').append(data);
+			$('#admin-result').html(data);
 		});
 		return false;
 	});
