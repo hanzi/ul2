@@ -69,7 +69,7 @@ include("settings.php");
 	<div class="container">
 		<h2>Hinweise</h2>
 		<ul>
-			<li>Dateien werden bis zu <strong>7 Tage</strong> aufbewahrt.</li>
+			<li>Dateien werden zusammen mit deiner IP <strong>IP <?= $_SERVER["REMOTE_ADDR"] ?></strong> bis zu <strong>7 Tage</strong> aufbewahrt.</li>
 			<li>Die maximale Dateigröße beträgt <strong>25 MB</strong>.</li>
 			<li>Unter "Hochgeladene Dateien" stehen alle Dateien, die unter deiner <strong>IP <?= $_SERVER["REMOTE_ADDR"] ?></strong> hochgeladen wurden.</li>
 		</ul>
@@ -113,8 +113,8 @@ unset($db);
 		</table>
 	</div>
 
-	<div class="container hidden" id="admin">
-		<h2>Admin</h2>
+	<div class="container" id="admin">
+		<h3>Admin</h3>
 		<form method="POST">
 		<div class="input-group col-md-3">
 			<span class="input-group-addon">
@@ -126,7 +126,19 @@ unset($db);
 			</span>
 		</div>
 		</form>
+		<div id="admin-result"></div>
 		<div class="container"></div>
+	</div>
+
+	<div class="container" id="admin">
+		<h3>ShareX config</h3>
+		<pre>{
+  "Name": "ul2",
+  "DestinationType": "ImageUploader, TextUploader, FileUploader",
+  "RequestURL": "<?= $setting["url_to_ul3"] ?>upload.php",
+  "FileFormName": "file-upload",
+  "URL": "$json:url$"
+}</pre>
 	</div>
 
 	<div class="hidden"></div>
